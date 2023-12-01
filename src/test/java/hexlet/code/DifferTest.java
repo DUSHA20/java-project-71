@@ -1,28 +1,96 @@
 package hexlet.code;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
-import java.io.IOException;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
+    private String readExpectedResult(String expectedPath) throws Exception {
+        Path path = Paths.get(getClass().getClassLoader().getResource(expectedPath).toURI());
+        return new String(Files.readAllBytes(path));
+    }
+
     @Test
-    public void testGenerate() throws IOException {
-        String filePath1 = "src/test/resources/file1.json";
-        String filePath2 = "src/test/resources/file2.json";
+    public void testGenerateNestedJson() throws Exception {
+        String filePath1 = "src/test/resources/file3.json";
+        String filePath2 = "src/test/resources/file4.json";
 
-        String expected = "{\n" +
-                "  - follow: false\n" +
-                "  host: \"hexlet.io\"\n" +
-                "  - proxy: \"123.234.53.22\"\n" +
-                "  - timeout: 50\n" +
-                "  + timeout: 20\n" +
-                "  + verbose: true\n" +
-                "}";
+        String formattedResult = Differ.generate(filePath1, filePath2, "stylish");
 
-        String result = Differ.generate(filePath1, filePath2);
+        String expectedPath = "expected/StylishResult.txt";
+        String expected = readExpectedResult(expectedPath);
 
-        assertEquals(expected, result);
+        assertEquals(expected, formattedResult);
+    }
+
+    @Test
+    public void testGenerateNestedYml() throws Exception {
+        String filePath1 = "src/test/resources/file3.yml";
+        String filePath2 = "src/test/resources/file4.yml";
+
+        String formattedResult = Differ.generate(filePath1, filePath2, "stylish");
+
+        String expectedPath = "expected/StylishResult.txt";
+        String expected = readExpectedResult(expectedPath);
+
+        assertEquals(expected, formattedResult);
+    }
+
+    @Test
+    public void testGenerateJsonPlain() throws Exception {
+        String filePath1 = "src/test/resources/file3.json";
+        String filePath2 = "src/test/resources/file4.json";
+
+        String formattedResult = Differ.generate(filePath1, filePath2, "plain");
+
+        String expectedPath = "expected/PlainResult.txt";
+        String expected = readExpectedResult(expectedPath);
+
+        assertEquals(expected, formattedResult);
+    }
+
+    @Test
+    public void testGenerateYmlPlain() throws Exception {
+        String filePath1 = "src/test/resources/file3.yml";
+        String filePath2 = "src/test/resources/file4.yml";
+
+        String formattedResult = Differ.generate(filePath1, filePath2, "plain");
+
+        String expectedPath = "expected/PlainResult.txt";
+        String expected = readExpectedResult(expectedPath);
+
+        assertEquals(expected, formattedResult);
+    }
+
+    @Test
+    public void testGenerateJson() throws Exception {
+        String filePath1 = "src/test/resources/file3.json";
+        String filePath2 = "src/test/resources/file4.json";
+
+        String formattedResult = Differ.generate(filePath1, filePath2, "json");
+
+        String expectedPath = "expected/JsonResult.txt";
+        String expected = readExpectedResult(expectedPath);
+
+        assertEquals(expected, formattedResult);
+    }
+
+    @Test
+    public void testGenerateYml() throws Exception {
+        String filePath1 = "src/test/resources/file3.yml";
+        String filePath2 = "src/test/resources/file4.yml";
+
+        String formattedResult = Differ.generate(filePath1, filePath2, "json");
+
+        String expectedPath = "expected/JsonResult.txt";
+        String expected = readExpectedResult(expectedPath);
+
+        assertEquals(expected, formattedResult);
     }
 }
+
