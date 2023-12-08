@@ -1,5 +1,5 @@
 setup:
-.DEFAULT_GOAL := build-run
+	gradle wrapper --gradle-version 8.2
 
 clean:
 	./gradlew clean
@@ -7,14 +7,11 @@ clean:
 build:
 	./gradlew clean build
 
-install:
-	./gradlew clean install
-
-run-dist:
-	./build/install/app/bin/app
-
 run:
-	./gradlew run
+	./gradlew run --args="-h"
+
+lint:
+	./gradlew checkstyleMain checkstyleTest
 
 test:
 	./gradlew test
@@ -22,12 +19,12 @@ test:
 report:
 	./gradlew jacocoTestReport
 
-lint:
-	./gradlew checkstyleMain checkstyleTest
+install:
+	./gradlew clean install
 
-update-deps:
-	./gradlew useLatestVersions
+run-dist:
+	./build/install/app/bin/app -h
 
-build-run: build run
+check-updates:
+	./gradlew dependencyUpdates
 
-.PHONY: build
