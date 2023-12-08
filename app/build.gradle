@@ -4,7 +4,13 @@ plugins {
     id 'checkstyle'
     id 'org.openjfx.javafxplugin' version '0.0.13'
     id 'org.beryx.jlink' version '2.25.0'
+    id 'jacoco'
 }
+
+jacoco {
+    toolVersion = "0.8.11"
+}
+
 
 group 'hexlet.code'
 version '1.0-SNAPSHOT'
@@ -58,6 +64,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    jacoco {
+        enabled = true
+    }
 }
 
 jlink {
