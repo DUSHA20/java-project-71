@@ -82,7 +82,7 @@
       <recent name="hexlet.code" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.app [installDist]">
+  <component name="RunManager" selected="Gradle.app [build]">
     <configuration name="app [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -169,8 +169,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.app [installDist]" />
         <item itemvalue="Gradle.app [build]" />
+        <item itemvalue="Gradle.app [installDist]" />
         <item itemvalue="Gradle.app [run]" />
         <item itemvalue="Gradle.app [clean]" />
       </list>
