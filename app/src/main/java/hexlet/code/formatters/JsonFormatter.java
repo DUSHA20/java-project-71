@@ -25,7 +25,7 @@ public class JsonFormatter {
         }
 
         if (!differences.isEmpty()) {
-            result.deleteCharAt(result.length() - 2).append('\n');
+            result.deleteCharAt(result.length() - 2);
         }
 
         result.append("]");

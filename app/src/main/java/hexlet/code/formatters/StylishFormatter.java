@@ -23,7 +23,6 @@ public class StylishFormatter {
                 }
             }
         }
-        result.deleteCharAt(result.length() - 1);
         result.append("}");
         return result.toString();
     }
