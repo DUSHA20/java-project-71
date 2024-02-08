@@ -7,8 +7,6 @@ public class PlainFormatter {
 
     public static String formatPlain(List<Map<String, Object>> differences) {
         StringBuilder result = new StringBuilder();
-        int lastIndex = differences.size() - 1; // Находим индекс последнего элемента
-
         for (int i = 0; i < differences.size(); i++) {
             Map<String, Object> diff = differences.get(i);
             String key = (String) diff.get("key");
@@ -18,21 +16,23 @@ public class PlainFormatter {
 
             switch (status) {
                 case "removed":
-                    result.append("Property '").append(key).append("' was removed");
+                    result.append("Property '").append(key).append("' was removed\n");
                     break;
                 case "added":
                     result.append("Property '").append(key).append("' was added with value: ").append(newValue);
+                    if (i < differences.size() - 1) {
+                        result.append("\n");
+                    }
                     break;
                 case "updated":
                     result.append("Property '").append(key).append("' was updated. From ").append(oldValue)
                             .append(" to ").append(newValue);
+                    if (i < differences.size() - 1) {
+                        result.append("\n");
+                    }
                     break;
                 default:
                     break;
-            }
-            
-            if (i != lastIndex) {
-                result.append("\n");
             }
         }
         return result.toString();
