@@ -7,19 +7,29 @@ public class PlainFormatter {
 
     public static String formatPlain(List<Map<String, Object>> differences) {
         StringBuilder result = new StringBuilder();
-        for (Map<String, Object> diff : differences) {
-            switch (diff.get("status").toString()) {
+        for (int i = 0; i < differences.size(); i++) {
+            Map<String, Object> diff = differences.get(i);
+            String key = (String) diff.get("key");
+            String status = (String) diff.get("status");
+            String oldValue = formatValue(diff.get("oldValue"));
+            String newValue = formatValue(diff.get("newValue"));
+
+            switch (status) {
                 case "removed":
-                    result.append("Property '").append(diff.get("key")).append("' was removed\n");
+                    result.append("Property '").append(key).append("' was removed\n");
                     break;
                 case "added":
-                    result.append("Property '").append(diff.get("key")).append("' was added with value: ")
-                            .append(formatValue(diff.get("newValue"))).append("\n");
+                    result.append("Property '").append(key).append("' was added with value: ").append(newValue);
+                    if (i < differences.size() - 1) {
+                        result.append("\n");
+                    }
                     break;
                 case "updated":
-                    result.append("Property '").append(diff.get("key")).append("' was updated. From ")
-                            .append(formatValue(diff.get("oldValue"))).append(" to ")
-                            .append(formatValue(diff.get("newValue"))).append("\n");
+                    result.append("Property '").append(key).append("' was updated. From ").append(oldValue)
+                            .append(" to ").append(newValue);
+                    if (i < differences.size() - 1) {
+                        result.append("\n");
+                    }
                     break;
                 default:
                     break;
