@@ -28,7 +28,7 @@ public class JsonFormatter {
             result.deleteCharAt(result.length() - 2);
         }
 
-        result.append("]");
+        result.append("]\n");
         return result.toString();
     }
 
