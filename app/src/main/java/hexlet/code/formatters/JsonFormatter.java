@@ -25,10 +25,10 @@ public class JsonFormatter {
         }
 
         if (!differences.isEmpty()) {
-            result.deleteCharAt(result.length() - 2);
+            result.deleteCharAt(result.length() - 2).append('\n');
         }
 
-        result.append("]\n");
+        result.append("]");
         return result.toString();
     }
 
