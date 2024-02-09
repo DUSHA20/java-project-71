@@ -13,14 +13,14 @@ A difference calculator is a program designed to identify the variances between 
 - Capable of generating reports in plain text, stylish, and JSON formats
 
 
----
+***
 
 [Step 5 Asciinema:](https://asciinema.org/a/np9tVxGUrIvv2lHbf7mJn2Sxc)
-***
+---
 [Step 7 Asciinema:](https://asciinema.org/a/TAHwJT2IkxUi9AoiI3F4sTl3D)
-***
+---
 [Step 8 Asciinema:](https://asciinema.org/a/p7bpM880bD1ymjveRWQMW4rvh)
-***
+---
 [Step 9 Asciinema:](https://asciinema.org/a/J1StiA94EMt8wcYlaMRZIt6TV)
-***
+---
 [Step 10 Asciinema:](https://asciinema.org/a/dLjt2v62gudy5oSclejdjKs5w) 
