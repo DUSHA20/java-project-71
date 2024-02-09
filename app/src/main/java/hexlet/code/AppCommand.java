@@ -37,13 +37,11 @@ public class AppCommand implements Runnable, Callable<String> {
     @Override
     public void run() {
         if (helpRequested) {
-            CommandLine cmd = new CommandLine(this.getClass().getAnnotation(CommandLine.Command.class));
-            System.out.println(cmd.getUsageMessage());
+            printUsageMessage();
             return;
         }
         if (versionRequested) {
-            CommandLine cmd = new CommandLine(this.getClass().getAnnotation(CommandLine.Command.class));
-            cmd.printVersionHelp(System.out);
+            printVersion();
             return;
         }
 
@@ -53,19 +51,33 @@ public class AppCommand implements Runnable, Callable<String> {
 
             List<Map<String, Object>> differences = Differ.generateDifference(map1, map2);
 
-            String formattedResult;
-            if ("stylish".equals(format)) {
-                formattedResult = StylishFormatter.formatStylish(differences);
-            } else if ("plain".equals(format)) {
-                formattedResult = PlainFormatter.formatPlain(differences);
-            } else if ("json".equals(format)) {
-                formattedResult = JsonFormatter.formatJson(differences);
-            } else {
-                throw new IllegalArgumentException("Unsupported format: " + format);
-            }
+            String formattedResult = formatResult(differences);
             System.out.println(formattedResult);
         } catch (Exception e) {
             System.out.println("Error reading or comparing files: " + e.getMessage());
+        }
+    }
+
+    private void printUsageMessage() {
+        CommandLine cmd = new CommandLine(this.getClass().getAnnotation(CommandLine.Command.class));
+        System.out.println(cmd.getUsageMessage());
+    }
+
+    private void printVersion() {
+        CommandLine cmd = new CommandLine(this.getClass().getAnnotation(CommandLine.Command.class));
+        cmd.printVersionHelp(System.out);
+    }
+
+    private String formatResult(List<Map<String, Object>> differences) {
+        switch (format) {
+            case "stylish":
+                return StylishFormatter.formatStylish(differences);
+            case "plain":
+                return PlainFormatter.formatPlain(differences);
+            case "json":
+                return JsonFormatter.formatJson(differences);
+            default:
+                throw new IllegalArgumentException("Unsupported format: " + format);
         }
     }
 

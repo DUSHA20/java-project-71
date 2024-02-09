@@ -2,31 +2,40 @@ package hexlet.code.formatters;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class PlainFormatter {
 
     public static String formatPlain(List<Map<String, Object>> differences) {
-        return differences.stream()
-                .map(diff -> formatDiff((String) diff.get("key"), (String) diff.get("status"),
-                        diff.get("oldValue"), diff.get("newValue")))
-                .collect(Collectors.joining("\n"));
-    }
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < differences.size(); i++) {
+            Map<String, Object> diff = differences.get(i);
+            String key = (String) diff.get("key");
+            String status = (String) diff.get("status");
+            String oldValue = formatValue(diff.get("oldValue"));
+            String newValue = formatValue(diff.get("newValue"));
 
-    private static String formatDiff(String key, String status, Object oldValue, Object newValue) {
-        String formattedOldValue = formatValue(oldValue);
-        String formattedNewValue = formatValue(newValue);
-
-        switch (status) {
-            case "removed":
-                return "Property '" + key + "' was removed";
-            case "added":
-                return "Property '" + key + "' was added with value: " + formattedNewValue;
-            case "updated":
-                return "Property '" + key + "' was updated. From " + formattedOldValue + " to " + formattedNewValue;
-            default:
-                return "";
+            switch (status) {
+                case "removed":
+                    result.append("Property '").append(key).append("' was removed\n");
+                    break;
+                case "added":
+                    result.append("Property '").append(key).append("' was added with value: ").append(newValue);
+                    if (i < differences.size() - 1) {
+                        result.append("\n");
+                    }
+                    break;
+                case "updated":
+                    result.append("Property '").append(key).append("' was updated. From ").append(oldValue)
+                            .append(" to ").append(newValue);
+                    if (i < differences.size() - 1) {
+                        result.append("\n");
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
+        return result.toString();
     }
 
     private static String formatValue(Object value) {
