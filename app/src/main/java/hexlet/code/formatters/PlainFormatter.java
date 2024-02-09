@@ -19,17 +19,12 @@ public class PlainFormatter {
                     result.append("Property '").append(key).append("' was removed\n");
                     break;
                 case "added":
-                    result.append("Property '").append(key).append("' was added with value: ").append(newValue);
-                    if (i < differences.size() - 1) {
-                        result.append("\n");
-                    }
+                    result.append("Property '").append(key).append("' was added with value: ").append(newValue)
+                            .append(i < differences.size() - 1 ? "\n" : "");
                     break;
                 case "updated":
                     result.append("Property '").append(key).append("' was updated. From ").append(oldValue)
-                            .append(" to ").append(newValue);
-                    if (i < differences.size() - 1) {
-                        result.append("\n");
-                    }
+                            .append(" to ").append(newValue).append(i < differences.size() - 1 ? "\n" : "");
                     break;
                 default:
                     break;
