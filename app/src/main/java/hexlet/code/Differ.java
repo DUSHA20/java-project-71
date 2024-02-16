@@ -21,41 +21,46 @@ public class Differ {
 
     public static List<Map<String, Object>> generateDifference(Map<String, Object> map1, Map<String, Object> map2) {
         List<Map<String, Object>> differences = new ArrayList<>();
-        Set<String> keysSet = new TreeSet<>(map1.keySet());
-        keysSet.addAll(map2.keySet());
 
-        for (String key : keysSet) {
-            differences.add(generateDiffEntry(key, map1, map2));
+        // Обработаем ключи из первой мапы
+        for (String key : map1.keySet()) {
+            if (!map2.containsKey(key)) {
+                differences.add(generateDiffEntry(key, map1.get(key), null, "removed"));
+            } else if (!Objects.equals(map1.get(key), map2.get(key))) {
+                differences.add(generateDiffEntry(key, map1.get(key), map2.get(key), "updated"));
+            } else {
+                differences.add(generateDiffEntry(key, map1.get(key), map2.get(key), "unchanged"));
+            }
         }
+
+        // Обработаем ключи из второй мапы, которых нет в первой
+        for (String key : map2.keySet()) {
+            if (!map1.containsKey(key)) {
+                differences.add(generateDiffEntry(key, null, map2.get(key), "added"));
+            }
+        }
+
         return differences;
     }
 
     private static Map<String, Object> generateDiffEntry(
             String key,
-            Map<String, Object> map1,
-            Map<String, Object> map2
+            Object value1,
+            Object value2,
+            String status
     ) {
         Map<String, Object> diff = new LinkedHashMap<>();
-        Object value1 = map1.get(key);
-        Object value2 = map2.get(key);
-
         diff.put("key", key);
-        if (map1.containsKey(key) && map2.containsKey(key)) {
-            if (!Objects.equals(value1, value2)) {
-                diff.put("oldValue", value1);
-                diff.put("newValue", value2);
-                diff.put("status", "updated");
-            } else {
-                diff.put("oldValue", value1);
-                diff.put("status", "unchanged");
-            }
-        } else if (map1.containsKey(key)) {
+        diff.put("status", status);
+
+        if (value1 != null) {
             diff.put("oldValue", value1);
-            diff.put("status", "removed");
-        } else {
-            diff.put("newValue", value2);
-            diff.put("status", "added");
         }
+
+        if (value2 != null) {
+            diff.put("newValue", value2);
+        }
+
         return diff;
     }
 
