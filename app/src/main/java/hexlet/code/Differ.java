@@ -26,23 +26,21 @@ public class Differ {
 
         for (String key : keysSet) {
             Map<String, Object> diff = new LinkedHashMap<>();
-            if (map1.containsKey(key) && !map2.containsKey(key)) {
-                diff.put("key", key);
-                diff.put("oldValue", map1.get(key));
-                diff.put("status", "removed");
-            } else if (!map1.containsKey(key) && map2.containsKey(key)) {
-                diff.put("key", key);
-                diff.put("newValue", map2.get(key));
-                diff.put("status", "added");
-            } else if (!Objects.equals(map1.get(key), map2.get(key))) {
-                diff.put("key", key);
-                diff.put("oldValue", map1.get(key));
-                diff.put("newValue", map2.get(key));
-                diff.put("status", "updated");
-            } else {
-                diff.put("key", key);
-                diff.put("oldValue", map1.get(key));
+            Object value1 = map1.get(key);
+            Object value2 = map2.get(key);
+
+            diff.put("key", key);
+            if (Objects.equals(value1, value2)) {
+                diff.put("oldValue", value1);
                 diff.put("status", "unchanged");
+            } else {
+                diff.put("oldValue", value1);
+                diff.put("newValue", value2);
+                diff.put("status", map1.containsKey(key) ? "updated" : "added");
+            }
+            if (!map1.containsKey(key) && map2.containsKey(key)) {
+                diff.put("oldValue", null);
+                diff.put("status", "added");
             }
             differences.add(diff);
         }
