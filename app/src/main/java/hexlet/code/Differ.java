@@ -30,8 +30,11 @@ public class Differ {
         return differences;
     }
 
-    private static Map<String, Object> generateDiffEntry(String key, Map<String, Object> map1, Map<String, Object> map2)
-    {
+    private static Map<String, Object> generateDiffEntry(
+            String key,
+            Map<String, Object> map1,
+            Map<String, Object> map2
+    ) {
         Map<String, Object> diff = new LinkedHashMap<>();
         Object value1 = map1.get(key);
         Object value2 = map2.get(key);
