@@ -92,5 +92,31 @@ public class DifferTest {
 
         assertEquals(expected, formattedResult);
     }
+
+    @Test
+    public void testGenerateWithoutFormatterJson() throws Exception {
+        String filePath1 = "src/test/resources/file3.json";
+        String filePath2 = "src/test/resources/file4.json";
+
+        String formattedResult = Differ.generate(filePath1, filePath2); // Не указываем форматтер
+
+        String expectedPath = "expected/StylishResult.txt";
+        String expected = readExpectedResult(expectedPath);
+
+        assertEquals(expected, formattedResult);
+    }
+
+    @Test
+    public void testGenerateWithoutFormatterYml() throws Exception {
+        String filePath1 = "src/test/resources/file3.yml";
+        String filePath2 = "src/test/resources/file4.yml";
+
+        String formattedResult = Differ.generate(filePath1, filePath2); // Не указываем форматтер
+
+        String expectedPath = "expected/StylishResult.txt";
+        String expected = readExpectedResult(expectedPath);
+
+        assertEquals(expected, formattedResult);
+    }
 }
 
