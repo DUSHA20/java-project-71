@@ -30,11 +30,11 @@ public class Parser {
     }
 
     private static Map<String, Object> jsonFileToMap(Path path) throws Exception {
-        return JSON_MAPPER.readValue(path.toFile(), new TypeReference<>() {});
+        return JSON_MAPPER.readValue(path.toFile(), new TypeReference<>() { });
     }
 
     private static Map<String, Object> yamlFileToMap(Path path) throws Exception {
-        return YAML_MAPPER.readValue(path.toFile(), new TypeReference<>() {});
+        return YAML_MAPPER.readValue(path.toFile(), new TypeReference<>() { });
     }
 
     private static Path getFullPath(String filePath) {
