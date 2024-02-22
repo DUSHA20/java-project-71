@@ -17,8 +17,8 @@ public class DifferTest {
 
     @Test
     public void testGenerateNestedJson() throws Exception {
-        String filePath1 = "fixtures/file3.json";
-        String filePath2 = "fixtures/file4.json";
+        String filePath1 = "src/test/resources/fixtures/file3.json";
+        String filePath2 = "src/test/resources/fixtures/file4.json";
 
         String formattedResult = Differ.generate(filePath1, filePath2, "stylish");
 
@@ -30,8 +30,8 @@ public class DifferTest {
 
     @Test
     public void testGenerateNestedYml() throws Exception {
-        String filePath1 = "fixtures/file3.yml";
-        String filePath2 = "fixtures/file4.yml";
+        String filePath1 = "src/test/resources/fixtures/file3.yml";
+        String filePath2 = "src/test/resources/fixtures/file4.yml";
 
         String formattedResult = Differ.generate(filePath1, filePath2, "stylish");
 
@@ -43,8 +43,8 @@ public class DifferTest {
 
     @Test
     public void testGenerateJsonPlain() throws Exception {
-        String filePath1 = "fixtures/file3.json";
-        String filePath2 = "fixtures/file4.json";
+        String filePath1 = "src/test/resources/fixtures/file3.json";
+        String filePath2 = "src/test/resources/fixtures/file4.json";
 
         String formattedResult = Differ.generate(filePath1, filePath2, "plain");
 
@@ -56,8 +56,8 @@ public class DifferTest {
 
     @Test
     public void testGenerateYmlPlain() throws Exception {
-        String filePath1 = "fixtures/file3.yml";
-        String filePath2 = "fixtures/file4.yml";
+        String filePath1 = "src/test/resources/fixtures/file3.yml";
+        String filePath2 = "src/test/resources/fixtures/file4.yml";
 
         String formattedResult = Differ.generate(filePath1, filePath2, "plain");
 
@@ -69,8 +69,8 @@ public class DifferTest {
 
     @Test
     public void testGenerateJson() throws Exception {
-        String filePath1 = "fixtures/file3.json";
-        String filePath2 = "fixtures/file4.json";
+        String filePath1 = "src/test/resources/fixtures/file3.json";
+        String filePath2 = "src/test/resources/fixtures/file4.json";
 
         String formattedResult = Differ.generate(filePath1, filePath2, "json");
 
@@ -82,8 +82,8 @@ public class DifferTest {
 
     @Test
     public void testGenerateYml() throws Exception {
-        String filePath1 = "fixtures/file3.yml";
-        String filePath2 = "fixtures/file4.yml";
+        String filePath1 = "src/test/resources/fixtures/file3.yml";
+        String filePath2 = "src/test/resources/fixtures/file4.yml";
 
         String formattedResult = Differ.generate(filePath1, filePath2, "json");
 
@@ -95,8 +95,8 @@ public class DifferTest {
 
     @Test
     public void testGenerateWithoutFormatterJson() throws Exception {
-        String filePath1 = "fixtures/file3.json";
-        String filePath2 = "fixtures/file4.json";
+        String filePath1 = "src/test/resources/fixtures/file3.json";
+        String filePath2 = "src/test/resources/fixtures/file4.json";
 
         String formattedResult = Differ.generate(filePath1, filePath2); // Не указываем форматтер
 
@@ -108,8 +108,8 @@ public class DifferTest {
 
     @Test
     public void testGenerateWithoutFormatterYml() throws Exception {
-        String filePath1 = "fixtures/file3.yml";
-        String filePath2 = "fixtures/file4.yml";
+        String filePath1 = "src/test/resources/fixtures/file3.yml";
+        String filePath2 = "src/test/resources/fixtures/file4.yml";
 
         String formattedResult = Differ.generate(filePath1, filePath2); // Не указываем форматтер
 
