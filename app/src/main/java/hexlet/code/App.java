@@ -19,6 +19,11 @@ public class App implements Callable<Integer> {
             description = "output format [default: ${DEFAULT-VALUE}]")
     private String format;
 
+    /**
+     * Compares two configuration files and shows a difference.
+     *
+     * @return 0 if successful, 1 if an error occurs
+     */
     @Override
     public Integer call() {
         try {
