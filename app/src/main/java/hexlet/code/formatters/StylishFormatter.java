@@ -16,7 +16,10 @@ public class StylishFormatter {
                 case "unchanged" -> result.append("    ").append(diff.get("key")).append(": ")
                         .append(diff.get("oldValue")).append("\n");
                 default -> {
-                    throw new IllegalArgumentException("Unknown status: " + diff.get("status"));
+                    result.append("  - ").append(diff.get("key")).append(": ")
+                            .append(diff.get("oldValue")).append("\n");
+                    result.append("  + ").append(diff.get("key")).append(": ")
+                            .append(diff.get("newValue")).append("\n");
                 }
             }
         }
