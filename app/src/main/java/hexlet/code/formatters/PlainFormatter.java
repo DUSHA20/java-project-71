@@ -27,7 +27,7 @@ public class PlainFormatter {
                             .append(" to ").append(newValue).append(i < differences.size() - 1 ? "\n" : "");
                     break;
                 default:
-                    break;
+                    throw new IllegalArgumentException("Unknown status: " + status);
             }
         }
         return result.toString();
