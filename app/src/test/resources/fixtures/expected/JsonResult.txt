@@ -1,5 +1,4 @@
-[
-  {
+[ {
     "key" : "chars1",
     "oldValue" : ["a", "b", "c"],
     "status" : "unchanged"
@@ -67,5 +66,4 @@
     "oldValue" : true,
     "newValue" : "none",
     "status" : "updated"
-  }
-]
+  } ]
