@@ -22,7 +22,7 @@ public class DifferTest {
 
         String formattedResult = Differ.generate(filePath1, filePath2, "stylish");
 
-        String expectedPath = "expected/StylishResult.txt";
+        String expectedPath = "fixtures/expected/StylishResult.txt";
         String expected = readExpectedResult(expectedPath);
 
         assertEquals(expected, formattedResult);
@@ -35,7 +35,7 @@ public class DifferTest {
 
         String formattedResult = Differ.generate(filePath1, filePath2, "stylish");
 
-        String expectedPath = "expected/StylishResult.txt";
+        String expectedPath = "fixtures/expected/StylishResult.txt";
         String expected = readExpectedResult(expectedPath);
 
         assertEquals(expected, formattedResult);
@@ -48,7 +48,7 @@ public class DifferTest {
 
         String formattedResult = Differ.generate(filePath1, filePath2, "plain");
 
-        String expectedPath = "expected/PlainResult.txt";
+        String expectedPath = "fixtures/expected/PlainResult.txt";
         String expected = readExpectedResult(expectedPath);
 
         assertEquals(expected, formattedResult);
@@ -61,7 +61,7 @@ public class DifferTest {
 
         String formattedResult = Differ.generate(filePath1, filePath2, "plain");
 
-        String expectedPath = "expected/PlainResult.txt";
+        String expectedPath = "fixtures/expected/PlainResult.txt";
         String expected = readExpectedResult(expectedPath);
 
         assertEquals(expected, formattedResult);
@@ -74,7 +74,7 @@ public class DifferTest {
 
         String formattedResult = Differ.generate(filePath1, filePath2, "json");
 
-        String expectedPath = "expected/JsonResult.txt";
+        String expectedPath = "fixtures/expected/JsonResult.txt";
         String expected = readExpectedResult(expectedPath);
 
         assertEquals(expected, formattedResult);
@@ -87,7 +87,7 @@ public class DifferTest {
 
         String formattedResult = Differ.generate(filePath1, filePath2, "json");
 
-        String expectedPath = "expected/JsonResult.txt";
+        String expectedPath = "fixtures/expected/JsonResult.txt";
         String expected = readExpectedResult(expectedPath);
 
         assertEquals(expected, formattedResult);
@@ -100,7 +100,7 @@ public class DifferTest {
 
         String formattedResult = Differ.generate(filePath1, filePath2); // Не указываем форматтер
 
-        String expectedPath = "expected/StylishResult.txt";
+        String expectedPath = "fixtures/expected/StylishResult.txt";
         String expected = readExpectedResult(expectedPath);
 
         assertEquals(expected, formattedResult);
@@ -113,7 +113,7 @@ public class DifferTest {
 
         String formattedResult = Differ.generate(filePath1, filePath2); // Не указываем форматтер
 
-        String expectedPath = "expected/StylishResult.txt";
+        String expectedPath = "fixtures/expected/StylishResult.txt";
         String expected = readExpectedResult(expectedPath);
 
         assertEquals(expected, formattedResult);
